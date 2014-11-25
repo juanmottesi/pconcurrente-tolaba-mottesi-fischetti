@@ -20,4 +20,19 @@ public class NumeroAleatorio {
 		else{return random(min, max);}
 	}
 	
+	
+	public static int random(int min, int max, String equipo){
+		int aux = new Random().nextInt(max);
+		if(equipo == "E2"){
+			if(aux >= min && aux < (max/2)){
+				return aux;
+			}
+		}
+		else{
+			if(aux >= (max/2)+1.5f && aux < max){
+				return aux;
+			}
+		}
+		return random(min,max,equipo);
+	}
 }

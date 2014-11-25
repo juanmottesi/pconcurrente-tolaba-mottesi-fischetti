@@ -79,8 +79,8 @@ public class Tablero {
 	private void generarTesoros(int cantTesoros, String equipo){
 		int contador = 0;
 		while(contador < cantTesoros){
-			int x1 = NumeroAleatorio.random(1, this.getAncho()-1);
-			int y1 = NumeroAleatorio.random(1, this.getAlto()-1);
+			int x1 = NumeroAleatorio.random(1, this.getAncho()-1, equipo);
+			int y1 = NumeroAleatorio.random(1, this.getAlto()-1, equipo);
 			if(!this.getMatriz().get(x1, y1).isOcupada()){
 				this.getMatriz().setIn(x1,y1, new Celda(new Tesoro(equipo),x1,y1));
 				contador++;
