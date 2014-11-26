@@ -193,6 +193,25 @@ public class Tablero {
 		
 	}
 	
+	public void agregarJugador(Jugador j){
+		int x1;
+		int y1;
+		if(j.getEquipo() == "E1"){
+			x1 = NumeroAleatorio.random(1, this.getAncho()-1, "E2");
+			y1 = NumeroAleatorio.random(1, this.getAlto()-1, "E2");
+		}
+		else{
+			x1 = NumeroAleatorio.random(1, this.getAncho()-1, "E1");
+			y1 = NumeroAleatorio.random(1, this.getAlto()-1, "E1");
+		}
+		if(!this.getMatriz().get(x1, y1).isOcupada()){
+			this.getMatriz().setIn(x1,y1, new Celda(j,x1,y1));
+		}
+		else{ 
+			this.agregarJugador(j);
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		Tablero t = new Tablero(11, 11, 2);
@@ -241,15 +260,23 @@ public class Tablero {
 		Jugador jugador3 = new Jugador("Ju3","E2", movs3);
 		Jugador jugador4 = new Jugador("Ju4","E2", movs4);
 		
-		t.getMatriz().setIn(2, 2, new Celda(jugador1,2,2));
-		System.out.println("Jugador 1 = POSACTUAL (2,2)");
-		t.getMatriz().setIn(3, 2, new Celda(jugador2,3,2));
-		System.out.println("Jugador 2 = POSACTUAL (3,1)");
-		t.getMatriz().setIn(1, 7, new Celda(jugador3,1,7));
-		System.out.println("Jugador 3 = POSACTUAL (1,7)");
-		t.getMatriz().setIn(7, 9, new Celda(jugador4,7,9));
-		System.out.println("Jugador 4 = POSACTUAL (7,9)");
+		t.agregarJugador(jugador1);
+		System.out.println("Jugador 1 = POSACTUAL (" +jugador1.getCeldaActual().getX()+","+ jugador1.getCeldaActual().getY() + ")");
+		t.agregarJugador(jugador2);
+		System.out.println("Jugador 2 = POSACTUAL (" +jugador2.getCeldaActual().getX()+","+ jugador2.getCeldaActual().getY() + ")");
+		t.agregarJugador(jugador3);
+		System.out.println("Jugador 3 = POSACTUAL (" +jugador3.getCeldaActual().getX()+","+ jugador3.getCeldaActual().getY() + ")");
+		t.agregarJugador(jugador4);
+		System.out.println("Jugador 4 = POSACTUAL (" +jugador4.getCeldaActual().getX()+","+ jugador4.getCeldaActual().getY() + ")");
 		
+//		t.getMatriz().setIn(2, 2, new Celda(jugador1,2,2));
+//		t.getMatriz().setIn(3, 2, new Celda(jugador2,3,2));
+//		System.out.println("Jugador 2 = POSACTUAL (3,1)");
+//		t.getMatriz().setIn(1, 7, new Celda(jugador3,1,7));
+//		System.out.println("Jugador 3 = POSACTUAL (1,7)");
+//		t.getMatriz().setIn(7, 9, new Celda(jugador4,7,9));
+//		System.out.println("Jugador 4 = POSACTUAL (7,9)");
+//		
 		t.getMatriz().mostrarMatriz();
 		jugador1.start();
 		jugador2.start();
