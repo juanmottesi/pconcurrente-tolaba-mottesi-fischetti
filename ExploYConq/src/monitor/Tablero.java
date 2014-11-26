@@ -140,10 +140,13 @@ public class Tablero {
 			return;
 		}
 		
-		while(!this.puedoMovermeHorizontal(jugador.getCeldaActual(), i)){
+		while(!this.puedoMovermeHorizontal(jugador.getCeldaActual(), i) && !this.terminoJuego()){
 			this.wait();
 			}
-		this.ejecutarMovimiento(jugador, this.getMatriz().get(jugador.getCeldaActual().getX()+ i, jugador.getCeldaActual().getY()));	
+		if(this.terminoJuego()){System.out.println("Termino el Juego gano"+this.ganador());return;}
+		else{
+		this.ejecutarMovimiento(jugador, this.getMatriz().get(jugador.getCeldaActual().getX()+ i, jugador.getCeldaActual().getY()));
+		}
 		
 	}
 	
