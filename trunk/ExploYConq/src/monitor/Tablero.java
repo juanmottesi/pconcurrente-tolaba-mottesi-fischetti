@@ -98,10 +98,13 @@ public class Tablero {
 			System.out.println(jugador.getIdentificacion()+ ": Esta en el borde");
 			return;
 		}
-		while(!this.puedoMovermeAdelante(jugador, i)){
+		while(!this.puedoMovermeAdelante(jugador, i)&& !this.terminoJuego()){
 			wait();
 		}
-		this.ejecutarMovimiento(jugador, this.getMatriz().get(jugador.getCeldaActual().getX(), jugador.getCeldaActual().getY()+i));
+		if(this.terminoJuego()){System.out.println("Termino el Juego gano"+this.ganador());return;}
+		else{
+			this.ejecutarMovimiento(jugador, this.getMatriz().get(jugador.getCeldaActual().getX(), jugador.getCeldaActual().getY()+i));
+		}
 	}
 
 	private boolean puedoMovermeAdelante(Jugador jugador, int i) {

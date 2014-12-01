@@ -9,7 +9,7 @@ public class Vacio implements Objeto {
 	
 	@Override
 	public String getIdentificacion() {
-		return "Vacio";
+		return "-----";
 	}
 
 	@Override
